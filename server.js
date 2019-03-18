@@ -24,6 +24,13 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+//API endpoint to return data about the client sending the request
+app.get("/api/whoami", (req, res) => {
+  console.log(req.headers)
+  res.json({"ipaddress":req.headers['x-forwarded-for'] || req.connection.remoteAddress,"language":req.headers['accept-language'],
+"software": req.headers['user-agent']});
+});
+
 
 
 // listen for requests :)
